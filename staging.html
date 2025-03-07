@@ -3,15 +3,88 @@
 <head>
   <meta charset="UTF-8">
   <title>Staging - Truva</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
-    .container { width: 80%; margin: 20px auto; }
-    header { background: #333; color: #fff; padding: 20px; text-align: center; }
-    .progress { text-align: center; margin-bottom: 20px; font-weight: bold; }
-    .progress span { margin: 0 10px; }
-    form { background: #fff; padding: 20px; border-radius: 5px; }
-    input[type="text"], textarea { width: 100%; padding: 8px; margin: 10px 0; border: 1px solid #ccc; border-radius: 4px; }
-    input[type="submit"] { padding: 10px 20px; background: #333; color: #fff; border: none; border-radius: 4px; cursor: pointer; }
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #f7f9fc;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    header {
+      background: #0052cc;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.8em;
+      font-weight: 500;
+    }
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 30px 40px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .progress {
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: 500;
+      color: #0052cc;
+    }
+    .progress span {
+      margin: 0 8px;
+    }
+    form {
+      margin-bottom: 30px;
+    }
+    form label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+      color: #555;
+    }
+    form input[type="text"],
+    form input[type="date"],
+    form textarea {
+      width: 100%;
+      padding: 10px 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1em;
+    }
+    form textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+    form input[type="submit"] {
+      width: 100%;
+      padding: 12px;
+      background: #0052cc;
+      border: none;
+      border-radius: 4px;
+      color: #fff;
+      font-size: 1.1em;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    form input[type="submit"]:hover {
+      background: #003d99;
+    }
+    /* Responsive adjustments */
+    @media (max-width: 600px) {
+      .container {
+        margin: 20px;
+        padding: 20px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -25,21 +98,32 @@
     <h2>Staging</h2>
     <form id="stagingForm">
       <label for="beforePhotos">Before Staging Photos (URLs):</label>
-      <input type="text" id="beforePhotos" name="beforePhotos" placeholder="Enter URLs separated by commas" required>
-
-      <label for="afterPhotos">After Staging Photos (URLs):</label>
-      <input type="text" id="afterPhotos" name="afterPhotos" placeholder="Enter URLs separated by commas" required>
-
-      <label for="stagingDescription">Staging Description:</label>
-      <textarea id="stagingDescription" name="stagingDescription" required></textarea>
-
+      <textarea id="beforePhotos" name="beforePhotos" placeholder="Enter URLs for before staging photos (comma separated)" required></textarea>
+      
+      <label for="stagingDate">Suggested Staging Start Date:</label>
+      <input type="date" id="stagingDate" name="stagingDate" required>
+      
+      <label for="communityClearance">Gated Community Clearance (URL):</label>
+      <input type="text" id="communityClearance" name="communityClearance" placeholder="Enter URL to clearance document" required>
+      
       <input type="submit" value="Next">
     </form>
   </div>
+  
   <script>
     document.getElementById('stagingForm').addEventListener('submit', function(e) {
       e.preventDefault();
+      // Validate fields if needed; here all required fields ensure the form is filled.
       localStorage.setItem('stagingComplete', 'true');
+      // Optionally save form data using localStorage:
+      const stagingData = {
+        beforePhotos: document.getElementById('beforePhotos').value,
+        stagingDate: document.getElementById('stagingDate').value,
+        communityClearance: document.getElementById('communityClearance').value
+      };
+      localStorage.setItem('stagingData', JSON.stringify(stagingData));
+      
+      // Redirect to the Buyer Interactions page
       window.location.href = 'buyer-interactions.html';
     });
   </script>
