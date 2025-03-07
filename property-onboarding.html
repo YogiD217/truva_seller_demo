@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Property Onboarding - Truva</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
+    .container { width: 80%; margin: 20px auto; }
+    header { background: #333; color: #fff; padding: 20px; text-align: center; }
+    .progress { text-align: center; margin-bottom: 20px; font-weight: bold; }
+    .progress span { margin: 0 10px; }
+    form { background: #fff; padding: 20px; border-radius: 5px; }
+    input[type="text"], input[type="number"], textarea { width: 100%; padding: 8px; margin: 10px 0; border: 1px solid #ccc; border-radius: 4px; }
+    input[type="submit"] { padding: 10px 20px; background: #333; color: #fff; border: none; border-radius: 4px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Truva Seller Demo</h1>
+  </header>
+  <div class="container">
+    <div class="progress">
+      <span style="color: green;">Seller Onboarding</span> → <span style="color: blue;">Property Onboarding</span> → Staging → Buyer Interactions → Sale Process
+    </div>
+    <h2>Property Onboarding</h2>
+    <form id="propertyOnboardingForm">
+      <label for="propertyAddress">Property Address:</label>
+      <textarea id="propertyAddress" name="propertyAddress" required></textarea>
+
+      <label for="propertyType">Property Type (Apartment, Villa, etc.):</label>
+      <input type="text" id="propertyType" name="propertyType" required>
+
+      <label for="area">Area (in sq.ft):</label>
+      <input type="number" id="area" name="area" required>
+
+      <label for="titleDeed">Upload Title Deed (URL):</label>
+      <input type="text" id="titleDeed" name="titleDeed" placeholder="Enter URL to Title Deed" required>
+
+      <label for="encumbrance">Upload Encumbrance Certificate (URL):</label>
+      <input type="text" id="encumbrance" name="encumbrance" placeholder="Enter URL to Encumbrance Certificate" required>
+
+      <input type="submit" value="Next">
+    </form>
+  </div>
+  <script>
+    document.getElementById('propertyOnboardingForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      localStorage.setItem('propertyOnboardingComplete', 'true');
+      window.location.href = 'staging.html';
+    });
+  </script>
+</body>
+</html>
