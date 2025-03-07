@@ -93,7 +93,7 @@
   </header>
   <div class="container">
     <div class="progress">
-      <span>Seller Onboarding</span> → Property Onboarding → Staging → Buyer Interactions → Sale Process
+      <span style="color: blue;">Seller Onboarding</span> → Property Onboarding → Staging → Buyer Interactions → Sale Process
     </div>
     <h2>Seller Onboarding</h2>
     <form id="sellerOnboardingForm">
@@ -112,12 +112,14 @@
       <label for="idProof">Upload General ID Proof (URL):</label>
       <input type="text" id="idProof" name="idProof" placeholder="Enter URL to your ID proof" required>
       
+      <!-- Added PAN Card Details -->
       <label for="panCard">PAN Card Number:</label>
       <input type="text" id="panCard" name="panCard" placeholder="Enter your PAN Card number" required>
       
       <label for="panCardUrl">Upload PAN Card (URL):</label>
       <input type="text" id="panCardUrl" name="panCardUrl" placeholder="Enter URL to your PAN Card image" required>
       
+      <!-- Added Aadhar Card Details -->
       <label for="aadharCard">Aadhar Card Number:</label>
       <input type="text" id="aadharCard" name="aadharCard" placeholder="Enter your Aadhar Card number" required>
       
@@ -130,7 +132,7 @@
   <script>
     document.getElementById('sellerOnboardingForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      // Optionally store the data or validate further
+      // Optionally, save form data using localStorage or an API call.
       localStorage.setItem('sellerOnboardingComplete', 'true');
       window.location.href = 'property-onboarding.html';
     });
