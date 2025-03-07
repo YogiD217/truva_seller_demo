@@ -93,7 +93,7 @@
   </header>
   <div class="container">
     <div class="progress">
-      <span style="color: green;">Seller Onboarding</span> → <span style="color: green;">Property Onboarding</span> → <span style="color: blue;">Staging</span> → Buyer Interactions → Sale Process
+      <span style="color: green;">Seller Onboarding</span> → <span style="color: green;">Property Onboarding</span> → <span style="color: blue;">Staging</span> → Buyer Interaction → Sale Process
     </div>
     <h2>Staging</h2>
     <form id="stagingForm">
@@ -113,18 +113,16 @@
   <script>
     document.getElementById('stagingForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      // Validate fields if needed; here all required fields ensure the form is filled.
-      localStorage.setItem('stagingComplete', 'true');
-      // Optionally save form data using localStorage:
+      // Validate and optionally save form data (using localStorage for demo purposes)
       const stagingData = {
         beforePhotos: document.getElementById('beforePhotos').value,
         stagingDate: document.getElementById('stagingDate').value,
         communityClearance: document.getElementById('communityClearance').value
       };
       localStorage.setItem('stagingData', JSON.stringify(stagingData));
-      
-      // Redirect to the Buyer Interactions page
-      window.location.href = 'buyer-interactions.html';
+      localStorage.setItem('stagingComplete', 'true');
+      // Redirect to the buyer interaction page (ensure file is named "buyer-interaction.html")
+      window.location.href = 'buyer-interaction.html';
     });
   </script>
 </body>
