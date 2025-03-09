@@ -3,48 +3,121 @@
 <head>
   <meta charset="UTF-8">
   <title>Truva Seller Onboarding Demo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
-    /* Basic styling for landing page */
+    * { box-sizing: border-box; }
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
+      font-family: 'Roboto', sans-serif;
+      background: #f7f9fc;
       margin: 0;
       padding: 0;
-    }
-    .container {
-      width: 80%;
-      margin: 50px auto;
-      text-align: center;
+      color: #333;
     }
     header {
-      background: #333;
+      background: #0052cc;
       color: #fff;
-      padding: 20px 0;
-      margin-bottom: 20px;
+      padding: 20px;
+      text-align: center;
     }
     header h1 {
       margin: 0;
+      font-size: 1.8em;
+      font-weight: 500;
+    }
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 30px 40px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .section {
+      margin-bottom: 30px;
+    }
+    .section h2 {
+      color: #0052cc;
+      margin-bottom: 10px;
+    }
+    .segment {
+      margin-bottom: 15px;
+      padding: 10px;
+      border-left: 4px solid #0052cc;
+      background: #f0f4f8;
+      border-radius: 4px;
+    }
+    .segment h3 {
+      margin: 0 0 5px;
+      font-size: 1.1em;
+    }
+    .segment p {
+      margin: 5px 0;
+      font-size: 0.95em;
     }
     .btn {
       display: inline-block;
-      margin: 20px auto;
       padding: 10px 20px;
-      background: #333;
+      background: #0052cc;
       color: #fff;
+      border-radius: 4px;
       text-decoration: none;
-      border-radius: 5px;
-      font-size: 1.2em;
+      margin: 10px 0;
+      transition: background 0.3s ease;
     }
     .btn:hover {
-      background: #555;
+      background: #003d99;
     }
-    ul {
-      list-style: none;
-      padding: 0;
+    .contact-referral {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
     }
-    li {
-      margin: 10px 0;
+    .contact, .referral {
+      flex: 1;
+      min-width: 300px;
+      background: #f0f4f8;
+      padding: 15px;
+      border-radius: 4px;
+    }
+    .contact h3, .referral h3 {
+      margin-top: 0;
       font-size: 1.1em;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    input[type="submit"] {
+      padding: 10px 20px;
+      background: #0052cc;
+      border: none;
+      color: #fff;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    input[type="submit"]:hover {
+      background: #003d99;
+    }
+    @media (max-width: 800px) {
+      .container {
+        margin: 20px;
+        padding: 20px;
+      }
+      .contact-referral {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
@@ -53,16 +126,90 @@
     <h1>Truva Seller Onboarding Demo</h1>
   </header>
   <div class="container">
-    <p>Welcome to the Truva Seller Onboarding Demo.</p>
-    <p>This demo showcases the complete multi-stage process:</p>
-    <ul>
-      <li>Seller Onboarding</li>
-      <li>Property Onboarding</li>
-      <li>Staging</li>
-      <li>Buyer Interactions</li>
-      <li>Sale Process</li>
-    </ul>
-    <a href="seller-onboarding.html" class="btn">Start Demo</a>
+    <!-- Overview Section -->
+    <div class="section" id="overview">
+      <h2>Overview</h2>
+      <div class="segment">
+        <h3>Seller Onboarding</h3>
+        <p>Enter your personal details and verify your identity with PAN, Aadhaar, and other ID proofs.</p>
+      </div>
+      <div class="segment">
+        <h3>Property Onboarding</h3>
+        <p>Provide your property details and upload necessary documents like title deed, encumbrance certificate, and more.</p>
+      </div>
+      <div class="segment">
+        <h3>Staging</h3>
+        <p>Submit "before staging" photos and propose a start date along with clearance from your gated community.</p>
+      </div>
+      <div class="segment">
+        <h3>Buyer Interaction</h3>
+        <p>Monitor buyer queries, financing options, and schedule viewings through an integrated dashboard.</p>
+      </div>
+      <div class="segment">
+        <h3>Sale Process</h3>
+        <p>Review the sale agreement, execute the final sale deed, process payments, and complete the handover.</p>
+      </div>
+      <a href="seller-onboarding.html" class="btn">Start Demo</a>
+    </div>
+    
+    <!-- Contact & Referral Section -->
+    <div class="section" id="contactReferral">
+      <h2>Contact & Referral</h2>
+      <div class="contact-referral">
+        <!-- Contact Truva Partner -->
+        <div class="contact">
+          <h3>Contact Truva Partner</h3>
+          <form id="contactForm">
+            <div class="form-group">
+              <label for="contactName">Your Name:</label>
+              <input type="text" id="contactName" name="contactName" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+              <label for="contactEmail">Your Email:</label>
+              <input type="email" id="contactEmail" name="contactEmail" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+              <label for="contactMessage">Message:</label>
+              <textarea id="contactMessage" name="contactMessage" placeholder="Enter your message" required></textarea>
+            </div>
+            <input type="submit" value="Send Message">
+          </form>
+        </div>
+        <!-- Refer a Friend -->
+        <div class="referral">
+          <h3>Refer a Friend</h3>
+          <form id="referralForm">
+            <div class="form-group">
+              <label for="friendName">Friend's Name:</label>
+              <input type="text" id="friendName" name="friendName" placeholder="Enter your friend's name" required>
+            </div>
+            <div class="form-group">
+              <label for="friendEmail">Friend's Email:</label>
+              <input type="email" id="friendEmail" name="friendEmail" placeholder="Enter your friend's email" required>
+            </div>
+            <div class="form-group">
+              <label for="referralMessage">Message:</label>
+              <textarea id="referralMessage" name="referralMessage" placeholder="Enter a message to your friend" required></textarea>
+            </div>
+            <input type="submit" value="Refer Friend">
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
+  
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Your message has been sent to the Truva Partner.');
+      this.reset();
+    });
+    
+    document.getElementById('referralForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Thank you for referring a friend!');
+      this.reset();
+    });
+  </script>
 </body>
 </html>
