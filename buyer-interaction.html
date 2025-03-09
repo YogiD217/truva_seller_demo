@@ -2,16 +2,101 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Buyer Interactions - Truva</title>
+  <title>Buyer Interaction - Truva</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
-    .container { width: 80%; margin: 20px auto; }
-    header { background: #333; color: #fff; padding: 20px; text-align: center; }
-    .progress { text-align: center; margin-bottom: 20px; font-weight: bold; }
-    .progress span { margin: 0 10px; }
-    form { background: #fff; padding: 20px; border-radius: 5px; }
-    input[type="text"], textarea { width: 100%; padding: 8px; margin: 10px 0; border: 1px solid #ccc; border-radius: 4px; }
-    input[type="submit"] { padding: 10px 20px; background: #333; color: #fff; border: none; border-radius: 4px; cursor: pointer; }
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #f7f9fc;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    header {
+      background: #0052cc;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.8em;
+      font-weight: 500;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 30px 40px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    .progress {
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: 500;
+      color: #0052cc;
+    }
+    .progress span {
+      margin: 0 8px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    table th, table td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+    }
+    table th {
+      background: #f0f4f8;
+    }
+    form {
+      margin-bottom: 30px;
+    }
+    form label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+      color: #555;
+    }
+    form input[type="text"],
+    form input[type="number"],
+    form input[type="time"],
+    form select {
+      width: 100%;
+      padding: 8px 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1em;
+    }
+    form input[type="submit"] {
+      width: 100%;
+      padding: 12px;
+      background: #0052cc;
+      border: none;
+      border-radius: 4px;
+      color: #fff;
+      font-size: 1.1em;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    form input[type="submit"]:hover {
+      background: #003d99;
+    }
+    @media (max-width: 900px) {
+      .container {
+        margin: 20px;
+        padding: 20px;
+      }
+      table th, table td {
+        font-size: 0.9em;
+      }
+    }
   </style>
 </head>
 <body>
@@ -20,25 +105,107 @@
   </header>
   <div class="container">
     <div class="progress">
-      <span style="color: green;">Seller Onboarding</span> → <span style="color: green;">Property Onboarding</span> → <span style="color: green;">Staging</span> → <span style="color: blue;">Buyer Interactions</span> → Sale Process
+      <span style="color: green;">Seller Onboarding</span> → <span style="color: green;">Property Onboarding</span> → <span style="color: green;">Staging</span> → <span style="color: blue;">Buyer Interaction</span> → Sale Process
     </div>
     <h2>Buyer Interactions</h2>
-    <form id="buyerInteractionsForm">
-      <label for="visitSchedule">Preferred Visit Schedule (Dates/Times):</label>
-      <input type="text" id="visitSchedule" name="visitSchedule" placeholder="Enter your preferred visit timings" required>
-
-      <label for="queries">List any queries from buyers:</label>
-      <textarea id="queries" name="queries" placeholder="Enter queries or issues raised by buyers" required></textarea>
-
-      <input type="submit" value="Next">
+    
+    <!-- Buyer Details Table -->
+    <table id="buyerTable">
+      <thead>
+        <tr>
+          <th>Buyer Name</th>
+          <th>Mode of Financing</th>
+          <th># Queries Raised</th>
+          <th># Documents Acknowledged</th>
+          <th>Preferred Viewing Time</th>
+          <th>Additional Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Buyer rows will be added here -->
+      </tbody>
+    </table>
+    
+    <!-- Form to Add Buyer Interaction Details -->
+    <h3>Add Buyer Interaction</h3>
+    <form id="buyerForm">
+      <label for="buyerName">Buyer Name:</label>
+      <input type="text" id="buyerName" name="buyerName" placeholder="Enter buyer's name" required>
+      
+      <label for="financing">Mode of Financing:</label>
+      <select id="financing" name="financing" required>
+        <option value="">Select financing mode</option>
+        <option value="Self-financed">Self-financed</option>
+        <option value="Bank Loan">Bank Loan</option>
+        <option value="Others">Others</option>
+      </select>
+      
+      <label for="queriesCount">Number of Queries Raised:</label>
+      <input type="number" id="queriesCount" name="queriesCount" min="0" value="0" required>
+      
+      <label for="docsAcknowledged">Number of Documents Acknowledged:</label>
+      <input type="number" id="docsAcknowledged" name="docsAcknowledged" min="0" value="0" required>
+      
+      <label for="viewingTime">Preferred Viewing Time:</label>
+      <input type="time" id="viewingTime" name="viewingTime" required>
+      
+      <label for="notes">Additional Notes:</label>
+      <input type="text" id="notes" name="notes" placeholder="Enter any additional notes">
+      
+      <input type="submit" value="Add Buyer">
     </form>
   </div>
+  
   <script>
-    document.getElementById('buyerInteractionsForm').addEventListener('submit', function(e) {
+    const buyerForm = document.getElementById('buyerForm');
+    const buyerTableBody = document.getElementById('buyerTable').querySelector('tbody');
+    
+    // Array to hold buyer data for demo purposes
+    let buyers = [];
+    
+    // Function to render the buyer table
+    function renderBuyerTable() {
+      buyerTableBody.innerHTML = '';
+      buyers.forEach(buyer => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${buyer.name}</td>
+          <td>${buyer.financing}</td>
+          <td>${buyer.queries}</td>
+          <td>${buyer.docsAcknowledged}</td>
+          <td>${buyer.viewingTime}</td>
+          <td>${buyer.notes}</td>
+        `;
+        buyerTableBody.appendChild(tr);
+      });
+    }
+    
+    // Handle form submission to add a new buyer interaction
+    buyerForm.addEventListener('submit', function(e) {
       e.preventDefault();
-      localStorage.setItem('buyerInteractionsComplete', 'true');
-      window.location.href = 'sale-process.html';
+      const buyer = {
+        name: document.getElementById('buyerName').value,
+        financing: document.getElementById('financing').value,
+        queries: document.getElementById('queriesCount').value,
+        docsAcknowledged: document.getElementById('docsAcknowledged').value,
+        viewingTime: document.getElementById('viewingTime').value,
+        notes: document.getElementById('notes').value
+      };
+      buyers.push(buyer);
+      renderBuyerTable();
+      buyerForm.reset();
     });
+    
+    // Optional: Pre-populate the table with sample data for demo purposes
+    buyers.push({
+      name: "John Doe",
+      financing: "Bank Loan",
+      queries: 2,
+      docsAcknowledged: 5,
+      viewingTime: "14:30",
+      notes: "Interested in quick closing"
+    });
+    renderBuyerTable();
   </script>
 </body>
 </html>
