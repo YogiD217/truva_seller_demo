@@ -50,9 +50,23 @@
       border: 1px solid #ccc;
       padding: 10px;
       text-align: center;
+      vertical-align: middle;
     }
     table th {
       background: #f0f4f8;
+    }
+    .action-btn {
+      padding: 6px 10px;
+      background: #0052cc;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9em;
+      transition: background 0.3s ease;
+    }
+    .action-btn:hover {
+      background: #003d99;
     }
     @media (max-width: 900px) {
       .container {
@@ -88,6 +102,8 @@
           <th># Documents Acknowledged</th>
           <th>Preferred Viewing Time</th>
           <th>Additional Notes</th>
+          <th>Respond to Queries</th>
+          <th>Initiate Sale Process</th>
         </tr>
       </thead>
       <tbody>
@@ -99,6 +115,12 @@
           <td>5</td>
           <td>14:30</td>
           <td>Interested in quick closing</td>
+          <td>
+            <button class="action-btn" onclick="alert('View/Respond to Queries for John Doe')">View/Respond</button>
+          </td>
+          <td>
+            <button class="action-btn" onclick="alert('Initiate Sale Process for John Doe')">Initiate Sale</button>
+          </td>
         </tr>
         <tr>
           <td>Jane Smith</td>
@@ -107,6 +129,12 @@
           <td>6</td>
           <td>10:00</td>
           <td>Wants property inspection first</td>
+          <td>
+            <button class="action-btn" onclick="alert('View/Respond to Queries for Jane Smith')">View/Respond</button>
+          </td>
+          <td>
+            <button class="action-btn" onclick="alert('Initiate Sale Process for Jane Smith')">Initiate Sale</button>
+          </td>
         </tr>
         <tr>
           <td>Alex Johnson</td>
@@ -115,6 +143,12 @@
           <td>4</td>
           <td>16:00</td>
           <td>Looking for negotiation on price</td>
+          <td>
+            <button class="action-btn" onclick="alert('View/Respond to Queries for Alex Johnson')">View/Respond</button>
+          </td>
+          <td>
+            <button class="action-btn" onclick="alert('Initiate Sale Process for Alex Johnson')">Initiate Sale</button>
+          </td>
         </tr>
       </tbody>
     </table>
