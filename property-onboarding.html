@@ -52,7 +52,9 @@
     }
     form input[type="text"],
     form input[type="number"],
-    form textarea {
+    form input[type="date"],
+    form textarea,
+    form select {
       width: 100%;
       padding: 10px 12px;
       margin-bottom: 15px;
@@ -62,10 +64,9 @@
     }
     form textarea {
       resize: vertical;
-      min-height: 80px;
+      min-height: 60px;
     }
-    form input[type="submit"],
-    form button {
+    form input[type="submit"] {
       width: 100%;
       padding: 12px;
       background: #0052cc;
@@ -76,53 +77,24 @@
       cursor: pointer;
       transition: background 0.3s ease;
     }
-    form input[type="submit"]:hover,
-    form button:hover {
+    form input[type="submit"]:hover {
       background: #003d99;
     }
-    /* Three-column layout for document statuses */
-    #docColumns {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 20px;
-    }
-    #docColumns > div {
-      flex: 1;
-      margin-right: 10px;
-    }
-    #docColumns > div:last-child {
-      margin-right: 0;
-    }
-    #docColumns h4 {
-      text-align: center;
+    .section-title {
+      font-size: 1.2em;
+      font-weight: 500;
       margin-bottom: 10px;
       color: #0052cc;
     }
-    #docColumns ul {
-      list-style: none;
-      padding: 0;
+    .section {
+      margin-bottom: 30px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #e0e0e0;
     }
-    #docColumns li {
-      background: #f0f4f8;
-      margin-bottom: 8px;
-      padding: 8px;
-      border-radius: 4px;
-      text-align: center;
-    }
-    /* Responsive adjustments */
     @media (max-width: 700px) {
       .container {
         margin: 20px;
         padding: 20px;
-      }
-      #docColumns {
-        flex-direction: column;
-      }
-      #docColumns > div {
-        margin-bottom: 20px;
-      }
-      #docColumns > div:last-child {
-        margin-bottom: 0;
       }
     }
   </style>
@@ -133,68 +105,97 @@
   </header>
   <div class="container">
     <div class="progress">
-      <span style="color: green;">Seller Onboarding</span> → <span style="color: blue;">Property Onboarding</span> → Staging → Buyer Interactions → Sale Process
+      <span style="color: green;">Seller Onboarding</span> → 
+      <span style="color: blue;">Property Onboarding</span> → Staging → Buyer Interactions → Sale Process
     </div>
     
     <!-- Property Details Section -->
-    <h2>Property Details</h2>
-    <form id="propertyDetailsForm">
-      <label for="propertyAddress">Property Address:</label>
-      <textarea id="propertyAddress" name="propertyAddress" placeholder="Enter the property address" required></textarea>
-      
-      <label for="propertyType">Property Type (Apartment, Villa, etc.):</label>
-      <input type="text" id="propertyType" name="propertyType" placeholder="Enter property type" required>
-      
-      <label for="area">Area (in sq.ft):</label>
-      <input type="number" id="area" name="area" placeholder="Enter area in square feet" required>
-      
-      <input type="submit" value="Save Property Details">
-    </form>
-    
-    <!-- Required Documents Upload Section -->
-    <h2>Upload Required Property Documents</h2>
-    <!-- Three-column layout: Pending, Query, Approved -->
-    <div id="docColumns">
-      <div>
-        <h4>Pending ⏳</h4>
-        <ul id="pendingDocs">
-          <!-- Pending property documents will be listed here -->
-        </ul>
-      </div>
-      <div>
-        <h4>Query ❓</h4>
-        <ul id="queryDocs">
-          <!-- Documents with queries will be listed here -->
-        </ul>
-      </div>
-      <div>
-        <h4>Approved ✅</h4>
-        <ul id="approvedDocs">
-          <!-- Approved documents will be listed here -->
-        </ul>
-      </div>
+    <div class="section">
+      <h2 class="section-title">Property Details</h2>
+      <form id="propertyDetailsForm">
+        <label for="propertyAddress">Property Address:</label>
+        <textarea id="propertyAddress" name="propertyAddress" placeholder="Enter the property address" required></textarea>
+        
+        <label for="propertyType">Property Type (Apartment, Villa, etc.):</label>
+        <input type="text" id="propertyType" name="propertyType" placeholder="Enter property type" required>
+        
+        <label for="area">Area (in sq.ft):</label>
+        <input type="number" id="area" name="area" placeholder="Enter area in square feet" required>
+        
+        <input type="submit" value="Save Property Details">
+      </form>
     </div>
     
-    <!-- Upload Document Form -->
-    <form id="uploadDocForm">
-      <label for="requiredDocSelect">Select Document Type:</label>
-      <select id="requiredDocSelect" required>
-        <!-- Options will be populated dynamically -->
-      </select>
-      
-      <label for="docUrl">Document URL:</label>
-      <input type="text" id="docUrl" placeholder="Enter URL to the document" required>
-      
-      <input type="submit" value="Upload Document">
-    </form>
+    <!-- Vastu Details Section -->
+    <div class="section">
+      <h2 class="section-title">Vastu Details</h2>
+      <form id="vastuDetailsForm">
+        <label for="vastuCompliant">Is the property Vastu Compliant?</label>
+        <select id="vastuCompliant" name="vastuCompliant" required>
+          <option value="">Select</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+        
+        <label for="entranceDirection">Main Entrance Direction:</label>
+        <input type="text" id="entranceDirection" name="entranceDirection" placeholder="e.g., North, East" required>
+        
+        <label for="vastuRemarks">Additional Vastu Remarks:</label>
+        <textarea id="vastuRemarks" name="vastuRemarks" placeholder="Enter any Vastu-related remarks"></textarea>
+        
+        <input type="submit" value="Save Vastu Details">
+      </form>
+    </div>
     
-    <!-- Button to Proceed to Next Stage -->
-    <button id="nextStageBtn">Next: Go to Staging</button>
+    <!-- Required Documents Upload Section -->
+    <div class="section">
+      <h2 class="section-title">Upload Required Property Documents</h2>
+      <!-- (Existing Three-Column Document Status Layout and Upload Form) -->
+      <div id="docColumns">
+        <div>
+          <h4>Pending ⏳</h4>
+          <ul id="pendingDocs">
+            <!-- Pending property documents will be listed here -->
+          </ul>
+        </div>
+        <div>
+          <h4>Query ❓</h4>
+          <ul id="queryDocs">
+            <!-- Documents with queries will be listed here -->
+          </ul>
+        </div>
+        <div>
+          <h4>Approved ✅</h4>
+          <ul id="approvedDocs">
+            <!-- Approved documents will be listed here -->
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Upload Document Form -->
+      <form id="uploadDocForm">
+        <label for="requiredDocSelect">Select Document Type:</label>
+        <select id="requiredDocSelect" required>
+          <!-- Options will be populated dynamically -->
+        </select>
+        
+        <label for="docUrl">Document URL:</label>
+        <input type="text" id="docUrl" placeholder="Enter URL to the document" required>
+        
+        <input type="submit" value="Upload Document">
+      </form>
+      
+      <!-- Button to Proceed to Next Stage -->
+      <button id="nextStageBtn">Next: Go to Staging</button>
+    </div>
+    
   </div>
   
   <script>
-    // Check if property details are saved
+    // For demonstration, we use local variables and localStorage to store stage completion.
     let propertyDetailsSaved = false;
+    let vastuDetailsSaved = false;
+    
     // Pre-defined list of required property documents with initial status 'pending'
     let requiredDocs = [
       { type: "Title Deed", status: "pending" },
@@ -204,27 +205,25 @@
       { type: "Tax Receipts", status: "pending" },
       { type: "Utility Bills", status: "pending" }
     ];
-    // List of uploaded documents for display
-    let uploadedDocuments = [];
     
-    // DOM Elements
+    // DOM Elements for property details form
     const propertyDetailsForm = document.getElementById('propertyDetailsForm');
-    const pendingDocsList = document.getElementById('pendingDocs');
-    const queryDocsList = document.getElementById('queryDocs');
-    const approvedDocsList = document.getElementById('approvedDocs');
-    const requiredDocSelect = document.getElementById('requiredDocSelect');
-    const uploadDocForm = document.getElementById('uploadDocForm');
-    const docUrlInput = document.getElementById('docUrl');
-    const nextStageBtn = document.getElementById('nextStageBtn');
+    propertyDetailsForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      propertyDetailsSaved = true;
+      alert("Property details saved.");
+    });
     
-    // Icons mapping
-    const icons = {
-      pending: "⏳",
-      query: "❓",
-      approved: "✅"
-    };
+    // DOM Elements for vastu details form
+    const vastuDetailsForm = document.getElementById('vastuDetailsForm');
+    vastuDetailsForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      vastuDetailsSaved = true;
+      alert("Vastu details saved.");
+    });
     
     // Populate required document dropdown
+    const requiredDocSelect = document.getElementById('requiredDocSelect');
     function updateRequiredDocSelect() {
       requiredDocSelect.innerHTML = '';
       requiredDocs.forEach((doc, index) => {
@@ -236,6 +235,9 @@
     }
     
     // Update document columns based on current statuses
+    const pendingDocsList = document.getElementById('pendingDocs');
+    const queryDocsList = document.getElementById('queryDocs');
+    const approvedDocsList = document.getElementById('approvedDocs');
     function updateDocColumns() {
       pendingDocsList.innerHTML = '';
       queryDocsList.innerHTML = '';
@@ -243,7 +245,7 @@
       
       requiredDocs.forEach(doc => {
         const li = document.createElement('li');
-        li.textContent = doc.type + " " + icons[doc.status];
+        li.textContent = doc.type + " " + (doc.status === "pending" ? "⏳" : doc.status === "query" ? "❓" : "✅");
         if (doc.status === "pending") {
           pendingDocsList.appendChild(li);
         } else if (doc.status === "query") {
@@ -254,37 +256,27 @@
       });
     }
     
-    // Handle property details form submission
-    propertyDetailsForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      // In a real app, you'd save these details to a database.
-      propertyDetailsSaved = true;
-      alert("Property details saved.");
-    });
-    
-    // Handle upload document form submission
+    // Handle document upload form submission
+    const uploadDocForm = document.getElementById('uploadDocForm');
+    const docUrlInput = document.getElementById('docUrl');
     uploadDocForm.addEventListener('submit', function(e) {
       e.preventDefault();
       const selectedIndex = requiredDocSelect.value;
       const docUrl = docUrlInput.value;
-      // For demo, we simulate the document upload by marking it as "approved"
+      // For demo, simulate document upload by marking it as "approved"
       requiredDocs[selectedIndex].status = "approved";
-      // Optionally, record the document in an uploadedDocuments array
-      uploadedDocuments.push({
-        type: requiredDocs[selectedIndex].type,
-        url: docUrl,
-        status: "approved"
-      });
       docUrlInput.value = '';
       updateDocColumns();
     });
     
-    // Ensure that user cannot proceed unless property details are saved
+    // Next Stage Button Logic (Go to Staging)
+    const nextStageBtn = document.getElementById('nextStageBtn');
     nextStageBtn.addEventListener('click', function() {
       if (!propertyDetailsSaved) {
         alert("Please save property details before proceeding.");
+      } else if (!vastuDetailsSaved) {
+        alert("Please save vastu details before proceeding.");
       } else {
-        // Mark property onboarding as complete and proceed to next stage
         localStorage.setItem('propertyOnboardingComplete', 'true');
         window.location.href = 'staging.html';
       }
