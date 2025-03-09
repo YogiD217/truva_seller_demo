@@ -54,40 +54,6 @@
     table th {
       background: #f0f4f8;
     }
-    form {
-      margin-bottom: 30px;
-    }
-    form label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: 500;
-      color: #555;
-    }
-    form input[type="text"],
-    form input[type="number"],
-    form input[type="time"],
-    form select {
-      width: 100%;
-      padding: 8px 10px;
-      margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 1em;
-    }
-    form input[type="submit"] {
-      width: 100%;
-      padding: 12px;
-      background: #0052cc;
-      border: none;
-      border-radius: 4px;
-      color: #fff;
-      font-size: 1.1em;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-    form input[type="submit"]:hover {
-      background: #003d99;
-    }
     @media (max-width: 900px) {
       .container {
         margin: 20px;
@@ -105,7 +71,10 @@
   </header>
   <div class="container">
     <div class="progress">
-      <span style="color: green;">Seller Onboarding</span> → <span style="color: green;">Property Onboarding</span> → <span style="color: green;">Staging</span> → <span style="color: blue;">Buyer Interaction</span> → Sale Process
+      <span style="color: green;">Seller Onboarding</span> → 
+      <span style="color: green;">Property Onboarding</span> → 
+      <span style="color: green;">Staging</span> → 
+      <span style="color: blue;">Buyer Interaction</span> → Sale Process
     </div>
     <h2>Buyer Interactions</h2>
     
@@ -122,90 +91,33 @@
         </tr>
       </thead>
       <tbody>
-        <!-- Buyer rows will be added here -->
+        <!-- Sample Buyer Data -->
+        <tr>
+          <td>John Doe</td>
+          <td>Bank Loan</td>
+          <td>2</td>
+          <td>5</td>
+          <td>14:30</td>
+          <td>Interested in quick closing</td>
+        </tr>
+        <tr>
+          <td>Jane Smith</td>
+          <td>Self-financed</td>
+          <td>0</td>
+          <td>6</td>
+          <td>10:00</td>
+          <td>Wants property inspection first</td>
+        </tr>
+        <tr>
+          <td>Alex Johnson</td>
+          <td>Others</td>
+          <td>1</td>
+          <td>4</td>
+          <td>16:00</td>
+          <td>Looking for negotiation on price</td>
+        </tr>
       </tbody>
     </table>
-    
-    <!-- Form to Add Buyer Interaction Details -->
-    <h3>Add Buyer Interaction</h3>
-    <form id="buyerForm">
-      <label for="buyerName">Buyer Name:</label>
-      <input type="text" id="buyerName" name="buyerName" placeholder="Enter buyer's name" required>
-      
-      <label for="financing">Mode of Financing:</label>
-      <select id="financing" name="financing" required>
-        <option value="">Select financing mode</option>
-        <option value="Self-financed">Self-financed</option>
-        <option value="Bank Loan">Bank Loan</option>
-        <option value="Others">Others</option>
-      </select>
-      
-      <label for="queriesCount">Number of Queries Raised:</label>
-      <input type="number" id="queriesCount" name="queriesCount" min="0" value="0" required>
-      
-      <label for="docsAcknowledged">Number of Documents Acknowledged:</label>
-      <input type="number" id="docsAcknowledged" name="docsAcknowledged" min="0" value="0" required>
-      
-      <label for="viewingTime">Preferred Viewing Time:</label>
-      <input type="time" id="viewingTime" name="viewingTime" required>
-      
-      <label for="notes">Additional Notes:</label>
-      <input type="text" id="notes" name="notes" placeholder="Enter any additional notes">
-      
-      <input type="submit" value="Add Buyer">
-    </form>
   </div>
-  
-  <script>
-    const buyerForm = document.getElementById('buyerForm');
-    const buyerTableBody = document.getElementById('buyerTable').querySelector('tbody');
-    
-    // Array to hold buyer data for demo purposes
-    let buyers = [];
-    
-    // Function to render the buyer table
-    function renderBuyerTable() {
-      buyerTableBody.innerHTML = '';
-      buyers.forEach(buyer => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td>${buyer.name}</td>
-          <td>${buyer.financing}</td>
-          <td>${buyer.queries}</td>
-          <td>${buyer.docsAcknowledged}</td>
-          <td>${buyer.viewingTime}</td>
-          <td>${buyer.notes}</td>
-        `;
-        buyerTableBody.appendChild(tr);
-      });
-    }
-    
-    // Handle form submission to add a new buyer interaction
-    buyerForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const buyer = {
-        name: document.getElementById('buyerName').value,
-        financing: document.getElementById('financing').value,
-        queries: document.getElementById('queriesCount').value,
-        docsAcknowledged: document.getElementById('docsAcknowledged').value,
-        viewingTime: document.getElementById('viewingTime').value,
-        notes: document.getElementById('notes').value
-      };
-      buyers.push(buyer);
-      renderBuyerTable();
-      buyerForm.reset();
-    });
-    
-    // Optional: Pre-populate the table with sample data for demo purposes
-    buyers.push({
-      name: "John Doe",
-      financing: "Bank Loan",
-      queries: 2,
-      docsAcknowledged: 5,
-      viewingTime: "14:30",
-      notes: "Interested in quick closing"
-    });
-    renderBuyerTable();
-  </script>
 </body>
 </html>
