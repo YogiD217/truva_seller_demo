@@ -8,13 +8,13 @@
     * { box-sizing: border-box; }
     body {
       font-family: 'Roboto', sans-serif;
-      background: #f5f5dc;
+      background: #f5f5dc; /* beige */
       margin: 0;
       padding: 0;
       color: #333;
     }
     header {
-      background: #FF8C00;
+      background: #FF8C00; /* deep orange */
       color: #fff;
       padding: 20px;
       text-align: center;
@@ -120,6 +120,10 @@
       <label for="aadharCardUrl">Upload Aadhar Card (URL):</label>
       <input type="text" id="aadharCardUrl" name="aadharCardUrl" placeholder="Enter URL to your Aadhar Card image" required>
       
+      <!-- New MOU Upload Segment -->
+      <label for="mouUpload">Upload MOU (Memorandum of Understanding) (URL):</label>
+      <input type="text" id="mouUpload" name="mouUpload" placeholder="Enter URL to your MOU document" required>
+      
       <input type="submit" value="Next">
     </form>
   </div>
@@ -127,6 +131,7 @@
   <script>
     document.getElementById('sellerOnboardingForm').addEventListener('submit', function(e) {
       e.preventDefault();
+      // Optionally, save form data using localStorage or an API call.
       localStorage.setItem('sellerOnboardingComplete', 'true');
       window.location.href = 'property-onboarding.html';
     });
