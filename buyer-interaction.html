@@ -8,13 +8,13 @@
     * { box-sizing: border-box; }
     body {
       font-family: 'Roboto', sans-serif;
-      background: #f5f5dc;
+      background: #f5f5dc; /* beige */
       margin: 0;
       padding: 0;
       color: #333;
     }
     header {
-      background: #FF8C00;
+      background: #FF8C00; /* deep orange */
       color: #fff;
       padding: 20px;
       text-align: center;
@@ -63,7 +63,7 @@
       border-radius: 4px;
       cursor: pointer;
       font-size: 0.9em;
-      margin-right: 10px;
+      margin: 2px;
       transition: background 0.3s ease;
     }
     .action-btn:hover {
@@ -104,6 +104,8 @@
           <th>Preferred Viewing Time</th>
           <th>Additional Notes</th>
           <th>View/Respond to Queries</th>
+          <th>Review Buyer MOU</th>
+          <th>Raise Query on Buyer MOU</th>
           <th>Initiate Sale Process</th>
         </tr>
       </thead>
@@ -120,6 +122,12 @@
             <button class="action-btn" onclick="alert('Viewing/Responding to Queries for John Doe')">View/Respond</button>
           </td>
           <td>
+            <button class="action-btn" onclick="alert('Reviewing Buyer MOU for John Doe')">Review MOU</button>
+          </td>
+          <td>
+            <button class="action-btn" onclick="alert('Raising Query on Buyer MOU for John Doe')">Raise Query</button>
+          </td>
+          <td>
             <button class="action-btn" onclick="window.location.href='sale-process.html'">Initiate Sale</button>
           </td>
         </tr>
@@ -134,6 +142,12 @@
             <button class="action-btn" onclick="alert('Viewing/Responding to Queries for Jane Smith')">View/Respond</button>
           </td>
           <td>
+            <button class="action-btn" onclick="alert('Reviewing Buyer MOU for Jane Smith')">Review MOU</button>
+          </td>
+          <td>
+            <button class="action-btn" onclick="alert('Raising Query on Buyer MOU for Jane Smith')">Raise Query</button>
+          </td>
+          <td>
             <button class="action-btn" onclick="window.location.href='sale-process.html'">Initiate Sale</button>
           </td>
         </tr>
@@ -146,6 +160,12 @@
           <td>Looking for negotiation on price</td>
           <td>
             <button class="action-btn" onclick="alert('Viewing/Responding to Queries for Alex Johnson')">View/Respond</button>
+          </td>
+          <td>
+            <button class="action-btn" onclick="alert('Reviewing Buyer MOU for Alex Johnson')">Review MOU</button>
+          </td>
+          <td>
+            <button class="action-btn" onclick="alert('Raising Query on Buyer MOU for Alex Johnson')">Raise Query</button>
           </td>
           <td>
             <button class="action-btn" onclick="window.location.href='sale-process.html'">Initiate Sale</button>
