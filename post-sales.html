@@ -8,13 +8,13 @@
     * { box-sizing: border-box; }
     body {
       font-family: 'Roboto', sans-serif;
-      background: #f5f5dc;
+      background: #f5f5dc; /* beige */
       margin: 0;
       padding: 0;
       color: #333;
     }
     header {
-      background: #FF8C00;
+      background: #FF8C00; /* deep orange */
       color: #fff;
       padding: 20px;
       text-align: center;
@@ -87,6 +87,20 @@
     input[type="submit"]:hover {
       background: #e07b00;
     }
+    .action-btn {
+      padding: 6px 10px;
+      background: #FF8C00;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9em;
+      margin-top: 10px;
+      transition: background 0.3s ease;
+    }
+    .action-btn:hover {
+      background: #e07b00;
+    }
     @media (max-width: 700px) {
       .container {
         margin: 20px;
@@ -112,20 +126,15 @@
     <form id="postSalesForm">
       <!-- Pending Payments Section -->
       <div class="section" id="pendingPaymentsSection">
-        <h3>Pending Payments</h3>
+        <h3>Pending Payments (Amount Owed to Truva)</h3>
         <label for="pendingAmount">Pending Payment Amount (in INR):</label>
         <input type="number" id="pendingAmount" name="pendingAmount" placeholder="Enter pending amount" required>
         
         <label for="paymentDueDate">Payment Due Date:</label>
         <input type="date" id="paymentDueDate" name="paymentDueDate" required>
         
-        <label for="paymentMethod">Payment Method:</label>
-        <select id="paymentMethod" name="paymentMethod" required>
-          <option value="">Select</option>
-          <option value="Bank Transfer">Bank Transfer</option>
-          <option value="Cheque">Cheque</option>
-          <option value="Other">Other</option>
-        </select>
+        <p><strong>Note:</strong> The above amount is what you owe to Truva. Please initiate the payment below.</p>
+        <button type="button" class="action-btn" id="initiatePaymentBtn">Initiate Payment</button>
       </div>
       
       <!-- Feedback Section -->
@@ -176,6 +185,11 @@
       localStorage.setItem('postSalesComplete', 'true');
       alert('Post-sales details submitted successfully!');
       window.location.href = 'index.html';
+    });
+    
+    document.getElementById('initiatePaymentBtn').addEventListener('click', function() {
+      // For demo purposes, simply alert that payment has been initiated.
+      alert('Initiating payment process...');
     });
   </script>
 </body>
