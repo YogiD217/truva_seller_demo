@@ -8,13 +8,13 @@
     * { box-sizing: border-box; }
     body {
       font-family: 'Roboto', sans-serif;
-      background: #f7f9fc;
+      background: #f5f5dc;
       margin: 0;
       padding: 0;
       color: #333;
     }
     header {
-      background: #0052cc;
+      background: #FF8C00;
       color: #fff;
       padding: 20px;
       text-align: center;
@@ -36,7 +36,7 @@
       text-align: center;
       margin-bottom: 30px;
       font-weight: 500;
-      color: #0052cc;
+      color: #FF8C00;
     }
     .progress span {
       margin: 0 8px;
@@ -62,12 +62,12 @@
     }
     form textarea {
       resize: vertical;
-      min-height: 80px;
+      min-height: 60px;
     }
     form input[type="submit"] {
       width: 100%;
       padding: 12px;
-      background: #0052cc;
+      background: #FF8C00;
       border: none;
       border-radius: 4px;
       color: #fff;
@@ -76,9 +76,8 @@
       transition: background 0.3s ease;
     }
     form input[type="submit"]:hover {
-      background: #003d99;
+      background: #e07b00;
     }
-    /* Responsive adjustments */
     @media (max-width: 600px) {
       .container {
         margin: 20px;
@@ -93,7 +92,9 @@
   </header>
   <div class="container">
     <div class="progress">
-      <span style="color: green;">Seller Onboarding</span> → <span style="color: green;">Property Onboarding</span> → <span style="color: blue;">Staging</span> → Buyer Interaction → Sale Process
+      <span style="color: green;">Seller Onboarding</span> → 
+      <span style="color: green;">Property Onboarding</span> → 
+      <span style="color: blue;">Staging</span> → Buyer Interaction → Sale Process
     </div>
     <h2>Staging</h2>
     <form id="stagingForm">
@@ -113,7 +114,6 @@
   <script>
     document.getElementById('stagingForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      // Validate and optionally save form data (using localStorage for demo purposes)
       const stagingData = {
         beforePhotos: document.getElementById('beforePhotos').value,
         stagingDate: document.getElementById('stagingDate').value,
@@ -121,7 +121,6 @@
       };
       localStorage.setItem('stagingData', JSON.stringify(stagingData));
       localStorage.setItem('stagingComplete', 'true');
-      // Redirect to the buyer interaction page (ensure file is named "buyer-interaction.html")
       window.location.href = 'buyer-interaction.html';
     });
   </script>
