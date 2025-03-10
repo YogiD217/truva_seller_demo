@@ -3,21 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <title>Seller Onboarding - Truva</title>
-  <!-- Using Google Fonts for a modern look -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
     body {
       font-family: 'Roboto', sans-serif;
-      background: #f7f9fc;
+      background: #f5f5dc;
       margin: 0;
       padding: 0;
       color: #333;
     }
     header {
-      background: #0052cc;
+      background: #FF8C00;
       color: #fff;
       padding: 20px;
       text-align: center;
@@ -33,13 +30,13 @@
       background: #fff;
       padding: 30px 40px;
       border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
     .progress {
       text-align: center;
       margin-bottom: 30px;
       font-weight: 500;
-      color: #0052cc;
+      color: #FF8C00;
     }
     .progress span {
       margin: 0 8px;
@@ -62,12 +59,12 @@
     }
     form textarea {
       resize: vertical;
-      min-height: 80px;
+      min-height: 60px;
     }
     form input[type="submit"] {
       width: 100%;
       padding: 12px;
-      background: #0052cc;
+      background: #FF8C00;
       border: none;
       border-radius: 4px;
       color: #fff;
@@ -76,9 +73,8 @@
       transition: background 0.3s ease;
     }
     form input[type="submit"]:hover {
-      background: #003d99;
+      background: #e07b00;
     }
-    /* Responsive adjustments */
     @media (max-width: 600px) {
       .container {
         margin: 20px;
@@ -93,7 +89,7 @@
   </header>
   <div class="container">
     <div class="progress">
-      <span style="color: blue;">Seller Onboarding</span> → Property Onboarding → Staging → Buyer Interactions → Sale Process
+      <span style="color: #FF8C00;">Seller Onboarding</span> → Property Onboarding → Staging → Buyer Interaction → Sale Process
     </div>
     <h2>Seller Onboarding</h2>
     <form id="sellerOnboardingForm">
@@ -112,14 +108,12 @@
       <label for="idProof">Upload General ID Proof (URL):</label>
       <input type="text" id="idProof" name="idProof" placeholder="Enter URL to your ID proof" required>
       
-      <!-- Added PAN Card Details -->
       <label for="panCard">PAN Card Number:</label>
       <input type="text" id="panCard" name="panCard" placeholder="Enter your PAN Card number" required>
       
       <label for="panCardUrl">Upload PAN Card (URL):</label>
       <input type="text" id="panCardUrl" name="panCardUrl" placeholder="Enter URL to your PAN Card image" required>
       
-      <!-- Added Aadhar Card Details -->
       <label for="aadharCard">Aadhar Card Number:</label>
       <input type="text" id="aadharCard" name="aadharCard" placeholder="Enter your Aadhar Card number" required>
       
@@ -129,10 +123,10 @@
       <input type="submit" value="Next">
     </form>
   </div>
+  
   <script>
     document.getElementById('sellerOnboardingForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      // Optionally, save form data using localStorage or an API call.
       localStorage.setItem('sellerOnboardingComplete', 'true');
       window.location.href = 'property-onboarding.html';
     });
