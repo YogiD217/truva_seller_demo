@@ -78,15 +78,6 @@
     form input[type="submit"]:hover {
       background: #e07b00;
     }
-    .section {
-      margin-bottom: 30px;
-      padding-bottom: 15px;
-      border-bottom: 1px solid #e0e0e0;
-    }
-    .section h3 {
-      margin-bottom: 10px;
-      color: #FF8C00;
-    }
     @media (max-width: 600px) {
       .container {
         margin: 20px;
@@ -107,9 +98,50 @@
     </div>
     <h2>Staging</h2>
     <form id="stagingForm">
-      <!-- Existing Staging Section -->
+      <!-- Existing Fields -->
       <label for="beforePhotos">Before Staging Photos (URLs):</label>
       <textarea id="beforePhotos" name="beforePhotos" placeholder="Enter URLs for before staging photos (comma separated)" required></textarea>
       
       <label for="stagingDate">Suggested Staging Start Date:</label>
-      <input type="date"
+      <input type="date" id="stagingDate" name="stagingDate" required>
+      
+      <label for="communityClearance">Gated Community Clearance (URL):</label>
+      <input type="text" id="communityClearance" name="communityClearance" placeholder="Enter URL to clearance document" required>
+      
+      <!-- New Fitout Section -->
+      <h3 style="color: #FF8C00; margin-bottom:10px;">Fitout Details</h3>
+      <label for="fitoutStartDate">Fitout Start Date:</label>
+      <input type="date" id="fitoutStartDate" name="fitoutStartDate" required>
+      
+      <label for="rwaPermission">Upload Permission Letter from RWA (URL):</label>
+      <input type="text" id="rwaPermission" name="rwaPermission" placeholder="Enter URL to RWA permission letter" required>
+      
+      <!-- New Inspection Permission Section -->
+      <h3 style="color: #FF8C00; margin-bottom:10px;">Inspection Permission</h3>
+      <label for="inspectionPermission">Upload Permission Letter for Agent/Buyer Inspection (URL):</label>
+      <input type="text" id="inspectionPermission" name="inspectionPermission" placeholder="Enter URL to inspection permission letter" required>
+      
+      <input type="submit" value="Next">
+    </form>
+  </div>
+  
+  <script>
+    document.getElementById('stagingForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      // Collect all staging data (optional: store in localStorage)
+      const stagingData = {
+        beforePhotos: document.getElementById('beforePhotos').value,
+        stagingDate: document.getElementById('stagingDate').value,
+        communityClearance: document.getElementById('communityClearance').value,
+        fitoutStartDate: document.getElementById('fitoutStartDate').value,
+        rwaPermission: document.getElementById('rwaPermission').value,
+        inspectionPermission: document.getElementById('inspectionPermission').value
+      };
+      localStorage.setItem('stagingData', JSON.stringify(stagingData));
+      localStorage.setItem('stagingComplete', 'true');
+      // Redirect to Buyer Interaction page
+      window.location.href = 'buyer-interaction.html';
+    });
+  </script>
+</body>
+</html>
