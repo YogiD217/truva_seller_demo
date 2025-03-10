@@ -8,13 +8,13 @@
     * { box-sizing: border-box; }
     body {
       font-family: 'Roboto', sans-serif;
-      background: #f7f9fc;
+      background: #f5f5dc;
       margin: 0;
       padding: 0;
       color: #333;
     }
     header {
-      background: #0052cc;
+      background: #FF8C00;
       color: #fff;
       padding: 20px;
       text-align: center;
@@ -36,7 +36,7 @@
       text-align: center;
       margin-bottom: 30px;
       font-weight: 500;
-      color: #0052cc;
+      color: #FF8C00;
     }
     .progress span {
       margin: 0 8px;
@@ -66,10 +66,11 @@
       resize: vertical;
       min-height: 60px;
     }
-    form input[type="submit"] {
+    form input[type="submit"],
+    form button {
       width: 100%;
       padding: 12px;
-      background: #0052cc;
+      background: #FF8C00;
       border: none;
       border-radius: 4px;
       color: #fff;
@@ -77,25 +78,57 @@
       cursor: pointer;
       transition: background 0.3s ease;
     }
-    form input[type="submit"]:hover {
-      background: #003d99;
-    }
-    .section-title {
-      font-size: 1.2em;
-      font-weight: 500;
-      margin-bottom: 10px;
-      color: #0052cc;
+    form input[type="submit"]:hover,
+    form button:hover {
+      background: #e07b00;
     }
     .section {
       margin-bottom: 30px;
       padding-bottom: 15px;
       border-bottom: 1px solid #e0e0e0;
     }
+    .section-title {
+      font-size: 1.2em;
+      font-weight: 500;
+      margin-bottom: 10px;
+      color: #FF8C00;
+    }
+    /* Vastu section styles */
+    .vastu-section { margin-bottom: 30px; padding-bottom: 15px; border-bottom: 1px solid #e0e0e0; }
     @media (max-width: 700px) {
       .container {
         margin: 20px;
         padding: 20px;
       }
+    }
+    /* Document columns styles */
+    #docColumns {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    #docColumns > div {
+      flex: 1;
+      margin-right: 10px;
+    }
+    #docColumns > div:last-child {
+      margin-right: 0;
+    }
+    #docColumns h4 {
+      text-align: center;
+      margin-bottom: 10px;
+      color: #FF8C00;
+    }
+    #docColumns ul {
+      list-style: none;
+      padding: 0;
+    }
+    #docColumns li {
+      background: #fff7e6;
+      margin-bottom: 8px;
+      padding: 8px;
+      border-radius: 4px;
+      text-align: center;
     }
   </style>
 </head>
@@ -106,7 +139,7 @@
   <div class="container">
     <div class="progress">
       <span style="color: green;">Seller Onboarding</span> → 
-      <span style="color: blue;">Property Onboarding</span> → Staging → Buyer Interactions → Sale Process
+      <span style="color: blue;">Property Onboarding</span> → Staging → Buyer Interaction → Sale Process
     </div>
     
     <!-- Property Details Section -->
@@ -127,7 +160,7 @@
     </div>
     
     <!-- Vastu Details Section -->
-    <div class="section">
+    <div class="section vastu-section">
       <h2 class="section-title">Vastu Details</h2>
       <form id="vastuDetailsForm">
         <label for="vastuCompliant">Is the property Vastu Compliant?</label>
@@ -150,34 +183,26 @@
     <!-- Required Documents Upload Section -->
     <div class="section">
       <h2 class="section-title">Upload Required Property Documents</h2>
-      <!-- (Existing Three-Column Document Status Layout and Upload Form) -->
+      <!-- Three-column layout: Pending, Query, Approved -->
       <div id="docColumns">
         <div>
           <h4>Pending ⏳</h4>
-          <ul id="pendingDocs">
-            <!-- Pending property documents will be listed here -->
-          </ul>
+          <ul id="pendingDocs"></ul>
         </div>
         <div>
           <h4>Query ❓</h4>
-          <ul id="queryDocs">
-            <!-- Documents with queries will be listed here -->
-          </ul>
+          <ul id="queryDocs"></ul>
         </div>
         <div>
           <h4>Approved ✅</h4>
-          <ul id="approvedDocs">
-            <!-- Approved documents will be listed here -->
-          </ul>
+          <ul id="approvedDocs"></ul>
         </div>
       </div>
       
       <!-- Upload Document Form -->
       <form id="uploadDocForm">
         <label for="requiredDocSelect">Select Document Type:</label>
-        <select id="requiredDocSelect" required>
-          <!-- Options will be populated dynamically -->
-        </select>
+        <select id="requiredDocSelect" required></select>
         
         <label for="docUrl">Document URL:</label>
         <input type="text" id="docUrl" placeholder="Enter URL to the document" required>
@@ -188,13 +213,27 @@
       <!-- Button to Proceed to Next Stage -->
       <button id="nextStageBtn">Next: Go to Staging</button>
     </div>
-    
   </div>
   
   <script>
-    // For demonstration, we use local variables and localStorage to store stage completion.
     let propertyDetailsSaved = false;
     let vastuDetailsSaved = false;
+    
+    // Handle property details form submission
+    const propertyDetailsForm = document.getElementById('propertyDetailsForm');
+    propertyDetailsForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      propertyDetailsSaved = true;
+      alert("Property details saved.");
+    });
+    
+    // Handle vastu details form submission
+    const vastuDetailsForm = document.getElementById('vastuDetailsForm');
+    vastuDetailsForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      vastuDetailsSaved = true;
+      alert("Vastu details saved.");
+    });
     
     // Pre-defined list of required property documents with initial status 'pending'
     let requiredDocs = [
@@ -206,23 +245,7 @@
       { type: "Utility Bills", status: "pending" }
     ];
     
-    // DOM Elements for property details form
-    const propertyDetailsForm = document.getElementById('propertyDetailsForm');
-    propertyDetailsForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      propertyDetailsSaved = true;
-      alert("Property details saved.");
-    });
-    
-    // DOM Elements for vastu details form
-    const vastuDetailsForm = document.getElementById('vastuDetailsForm');
-    vastuDetailsForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      vastuDetailsSaved = true;
-      alert("Vastu details saved.");
-    });
-    
-    // Populate required document dropdown
+    // Populate the required document dropdown
     const requiredDocSelect = document.getElementById('requiredDocSelect');
     function updateRequiredDocSelect() {
       requiredDocSelect.innerHTML = '';
@@ -263,13 +286,13 @@
       e.preventDefault();
       const selectedIndex = requiredDocSelect.value;
       const docUrl = docUrlInput.value;
-      // For demo, simulate document upload by marking it as "approved"
+      // For demo, mark document as "approved"
       requiredDocs[selectedIndex].status = "approved";
       docUrlInput.value = '';
       updateDocColumns();
     });
     
-    // Next Stage Button Logic (Go to Staging)
+    // Next Stage Button Logic
     const nextStageBtn = document.getElementById('nextStageBtn');
     nextStageBtn.addEventListener('click', function() {
       if (!propertyDetailsSaved) {
