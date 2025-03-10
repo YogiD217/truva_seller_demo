@@ -8,13 +8,13 @@
     * { box-sizing: border-box; }
     body {
       font-family: 'Roboto', sans-serif;
-      background: #f5f5dc; /* beige */
+      background: #f5f5dc;
       margin: 0;
       padding: 0;
       color: #333;
     }
     header {
-      background: #FF8C00; /* deep orange */
+      background: #FF8C00;
       color: #fff;
       padding: 20px;
       text-align: center;
@@ -129,4 +129,54 @@
       </div>
       
       <!-- Feedback Section -->
-      <div clas
+      <div class="section" id="feedbackSection">
+        <h3>Feedback</h3>
+        <label for="experienceRating">Rate Your Sale Experience (1-5):</label>
+        <select id="experienceRating" name="experienceRating" required>
+          <option value="">Select Rating</option>
+          <option value="1">1 - Very Poor</option>
+          <option value="2">2 - Poor</option>
+          <option value="3">3 - Average</option>
+          <option value="4">4 - Good</option>
+          <option value="5">5 - Excellent</option>
+        </select>
+        
+        <label for="feedbackText">Feedback:</label>
+        <textarea id="feedbackText" name="feedbackText" placeholder="Enter your feedback" required></textarea>
+      </div>
+      
+      <!-- Referrals Section -->
+      <div class="section" id="referralsSection">
+        <h3>Referrals</h3>
+        <p>If you know someone who might be interested in future deals, please refer them below.</p>
+        <label for="referralName">Referral Name:</label>
+        <input type="text" id="referralName" name="referralName" placeholder="Enter referral name" required>
+        
+        <label for="referralEmail">Referral Email:</label>
+        <input type="email" id="referralEmail" name="referralEmail" placeholder="Enter referral email" required>
+        
+        <label for="referralMessage">Referral Message:</label>
+        <textarea id="referralMessage" name="referralMessage" placeholder="Enter a message (optional)"></textarea>
+      </div>
+      
+      <!-- Post-Sale Support Section -->
+      <div class="section" id="postSaleSupportSection">
+        <h3>Post-Sale Support</h3>
+        <label for="supportIssues">Any Pending Issues/Queries:</label>
+        <textarea id="supportIssues" name="supportIssues" placeholder="Describe any post-sale issues or queries" required></textarea>
+      </div>
+      
+      <input type="submit" value="Submit Post-Sale Details">
+    </form>
+  </div>
+  
+  <script>
+    document.getElementById('postSalesForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      localStorage.setItem('postSalesComplete', 'true');
+      alert('Post-sales details submitted successfully!');
+      window.location.href = 'index.html';
+    });
+  </script>
+</body>
+</html>
