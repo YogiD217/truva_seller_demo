@@ -50,6 +50,13 @@
       margin-bottom: 10px;
       color: #FF8C00;
     }
+    .dummy-data {
+      font-size: 1em;
+      margin-bottom: 10px;
+    }
+    .dummy-data span {
+      font-weight: bold;
+    }
     form label {
       display: block;
       margin-bottom: 5px;
@@ -123,23 +130,21 @@
       <span style="color: blue;">Post Sales</span>
     </div>
     <h2>Post Sales</h2>
-    <form id="postSalesForm">
-      <!-- Pending Payments Section -->
-      <div class="section" id="pendingPaymentsSection">
-        <h3>Pending Payments (Amount Owed to Truva)</h3>
-        <label for="pendingAmount">Pending Payment Amount (in INR):</label>
-        <input type="number" id="pendingAmount" name="pendingAmount" placeholder="Enter pending amount" required>
-        
-        <label for="paymentDueDate">Payment Due Date:</label>
-        <input type="date" id="paymentDueDate" name="paymentDueDate" required>
-        
-        <p><strong>Note:</strong> The above amount is what you owe to Truva. Please initiate the payment below.</p>
-        <button type="button" class="action-btn" id="initiatePaymentBtn">Initiate Payment</button>
+    
+    <!-- Pending Payments Section with Dummy Data -->
+    <div class="section" id="pendingPaymentsSection">
+      <h3>Pending Payments (Amount Owed to Truva)</h3>
+      <div class="dummy-data">
+        <p>Amount Owed: <span>INR 50,000</span></p>
+        <p>Payment Due Date: <span>2024-12-31</span></p>
       </div>
+      <button type="button" class="action-btn" id="initiatePaymentBtn">Initiate Payment</button>
+    </div>
       
-      <!-- Feedback Section -->
-      <div class="section" id="feedbackSection">
-        <h3>Feedback</h3>
+    <!-- Feedback Section -->
+    <div class="section" id="feedbackSection">
+      <h3>Feedback</h3>
+      <form id="feedbackForm">
         <label for="experienceRating">Rate Your Sale Experience (1-5):</label>
         <select id="experienceRating" name="experienceRating" required>
           <option value="">Select Rating</option>
@@ -152,11 +157,13 @@
         
         <label for="feedbackText">Feedback:</label>
         <textarea id="feedbackText" name="feedbackText" placeholder="Enter your feedback" required></textarea>
-      </div>
+      </form>
+    </div>
       
-      <!-- Referrals Section -->
-      <div class="section" id="referralsSection">
-        <h3>Referrals</h3>
+    <!-- Referrals Section -->
+    <div class="section" id="referralsSection">
+      <h3>Referrals</h3>
+      <form id="referralForm">
         <p>If you know someone who might be interested in future deals, please refer them below.</p>
         <label for="referralName">Referral Name:</label>
         <input type="text" id="referralName" name="referralName" placeholder="Enter referral name" required>
@@ -166,30 +173,33 @@
         
         <label for="referralMessage">Referral Message:</label>
         <textarea id="referralMessage" name="referralMessage" placeholder="Enter a message (optional)"></textarea>
-      </div>
+      </form>
+    </div>
       
-      <!-- Post-Sale Support Section -->
-      <div class="section" id="postSaleSupportSection">
-        <h3>Post-Sale Support</h3>
+    <!-- Post-Sale Support Section -->
+    <div class="section" id="postSaleSupportSection">
+      <h3>Post-Sale Support</h3>
+      <form id="supportForm">
         <label for="supportIssues">Any Pending Issues/Queries:</label>
         <textarea id="supportIssues" name="supportIssues" placeholder="Describe any post-sale issues or queries" required></textarea>
-      </div>
+      </form>
+    </div>
       
-      <input type="submit" value="Submit Post-Sale Details">
-    </form>
+    <!-- Submit Button for Post-Sale Details -->
+    <input type="submit" value="Submit Post-Sale Details" form="supportForm" id="submitPostSales">
   </div>
   
   <script>
-    document.getElementById('postSalesForm').addEventListener('submit', function(e) {
+    document.getElementById('initiatePaymentBtn').addEventListener('click', function() {
+      alert('Initiating payment process...');
+    });
+    
+    document.getElementById('submitPostSales').addEventListener('click', function(e) {
       e.preventDefault();
+      // In a real app, form data would be processed here.
       localStorage.setItem('postSalesComplete', 'true');
       alert('Post-sales details submitted successfully!');
       window.location.href = 'index.html';
-    });
-    
-    document.getElementById('initiatePaymentBtn').addEventListener('click', function() {
-      // For demo purposes, simply alert that payment has been initiated.
-      alert('Initiating payment process...');
     });
   </script>
 </body>
